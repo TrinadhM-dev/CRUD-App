@@ -1,0 +1,24 @@
+when this list of books changes in the any way,we need to update content.---->State
+
+
+
+push modifies the exisitng array
+JS finds the exisitng array and adds an element
+
+
+
+but in the react
+
+//References to the new state ----> [{id:99,title:'abc'},{id:123,title:'dfe'}];
+
+//References to the current state -----> [{id:99,title:'abc'}];
+
+React will process the rerender
+
+
+****** 
+Do not mutate/Change/Modify arrays or objects when they are used as state.
+
+
+//Filter Method always returns a new array.
+Filter Keeps True
