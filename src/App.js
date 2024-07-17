@@ -6,6 +6,17 @@ function App(){
 //state 
 const [books,setBooks] = useState([]);
 
+//delete
+
+const deleteBookById=(id)=>{
+   //doesnot modify the exisitng array bt it does 
+   //gives a new array
+   const updatedBooks = books.filter((book)=>{
+      return book.id !== id;
+   })
+   setBooks(updatedBooks);
+};
+
 
 
 //  eventHandler
@@ -18,10 +29,10 @@ const updatedBooks = [...books,{
  }
  return <div className='app'>
     {/* props */}
- <h1>{books.length}</h1>
- <BookCreate onCreate={createBook} />
+ <h1>Reading List</h1>
+ <BookCreate onCreate={createBook}  />
  {/* props */}
- <BookList books={books} />
+ <BookList books={books} onDelete={deleteBookById} />
  </div>
 }
 
