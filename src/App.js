@@ -1,10 +1,18 @@
 import './index.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import axios from "axios";
 function App(){
 //state 
 const [books,setBooks] = useState([]);
+const fetchBooks = async()=>{
+   const response = await axios.get("http://localhost:3001/books")
+      setBooks(response.data);
+ }
+ useEffect(()=>{
+   fetchBooks();
+ },[])
 
 //edit
 const editBookById = (id,newTitle)=>{
@@ -30,14 +38,18 @@ const deleteBookById=(id)=>{
 
 
 
+
+
 //  eventHandler
- const createBook = (title)=>{
-const updatedBooks = [...books,{
-   id:Math.round(Math.random()*9999),
-   title}]
- console.log('Need to add the book with the',title);
- setBooks(updatedBooks);
+ const createBook = async(title)=>{
+  const response = await axios.post("http://localhost:3001/books",{
+      title:title
+   });
+   const updatedBooks = [...books,response.data]
+      setBooks(updatedBooks);
  }
+
+ 
  return <div className='app'>
     {/* props */}
  <h1>Reading List</h1>
